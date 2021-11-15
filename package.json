@@ -1,0 +1,28 @@
+{
+  "name": "node-red-contrib-aws-cognito-adapter",
+  "version": "0.0.1",
+  "description": "AWS Cognito adapter to create and authenticate users",
+  "main": "index.js",
+  "node-red": {
+    "nodes": {
+      "cognito-user-login": "cognito-user-login.js",
+      "cognito-create-user": "cognito-create-user.js",
+      "cognito-verify-user": "cognito-verify-user.js"
+    }
+  },
+  "keywords": [
+    "node-red"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tibu Padmakumar",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tibuenginef/node-red-contrib-aws-cognito-adapter.git"
+  },
+  "dependencies": {
+    "amazon-cognito-identity-js": "^4.5.7"
+  }
+}

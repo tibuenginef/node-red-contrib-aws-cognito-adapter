@@ -1,0 +1,92 @@
+<script type="text/javascript">
+    RED.nodes.registerType('cognito-verify-user', {
+        category: 'egaliti',
+        color: '#FF9900',
+        defaults: {
+            name: {
+                value: ""
+            },
+            target: {
+                value: "payload"
+            },
+            userpoolid: {
+                value: ""
+            },
+            userpoolidType: {
+                value: "str"
+            },
+            clientid: {
+                value: ""
+            },
+            clientidType: {
+                value: "str"
+            },
+        },
+        credentials: {
+            email: {
+                type: "text"
+            },
+            code: {
+                type: "text"
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "light.svg",
+        label: function () {
+            return this.name || "cognito-verify-user";
+        },
+
+        oneditprepare: function () {
+            $("#node-input-userpoolid").typedInput({
+                type: "str",
+                types: ["str", "msg", "flow", "global"],
+                typeField: "#node-input-userpoolidType"
+            });
+            $("#node-input-clientid").typedInput({
+                type: "str",
+                types: ["str", "msg", "flow", "global"],
+                typeField: "#node-input-clientidType"
+            });
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="cognito-verify-user">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-target"><i class="fa fa-tag"></i>Target attribute</label>
+        <input type="text" id="node-input-target" placeholder="msg Attribute">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-email"><i class="fa fa-tag"></i> Email</label>
+        <input type="text" id="node-input-email" placeholder="Cognito User Email">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-code"><i class="fa fa-tag"></i> Mobile Number</label>
+        <input type="text" id="node-input-code" placeholder="Cognito Email Verification Code">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-userpoolid"><i class="fa fa-tag"></i>Userpool Id</label>
+        <input type="text" id="node-input-userpoolid" placeholder="Cognito userpoolid">
+        <input type="hidden" id="node-input-userpoolidType">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-clientid"><i class="fa fa-tag"></i>Client Id</label>
+        <input type="text" id="node-input-clientid" placeholder="Cognito clientid">
+        <input type="hidden" id="node-input-clientidType">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="cognito-verify-user">
+    <p> A simple node that creates user against AWS cognito.<br />
+    </p>
+</script>
