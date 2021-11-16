@@ -114,14 +114,16 @@ module.exports = function (RED) {
               clockDrift: response.clockDrift,
             };
             msg.payload = result;
-            node.send(msg);
+            node.send([msg, null]);
           })
           .catch((error) => {
-            node.error(error);
+            msg.payload = error;
+            node.send([null, msg]);
             node.status({ fill: "red", shape: "ring", text: error.message });
           });
       } catch (error) {
-        node.error(error.message);
+        msg.payload = error;
+        node.send([null, msg]);
         this.status({ fill: "red", shape: "ring", text: "error" });
       }
     });
