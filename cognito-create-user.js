@@ -134,15 +134,19 @@ module.exports = function (RED) {
               },
             };
             msg.payload = result;
-            node.send(msg);
+            node.send([msg, null]);
           })
           .catch((error) => {
             node.error(error);
             node.status({ fill: "red", shape: "ring", text: error.message });
+            msg.payload = error;
+            node.send([null, msg]);
           });
       } catch (error) {
         node.error(error.message);
         this.status({ fill: "red", shape: "ring", text: "error" });
+        msg.payload = error;
+        node.send([null, msg]);
       }
     });
   }
